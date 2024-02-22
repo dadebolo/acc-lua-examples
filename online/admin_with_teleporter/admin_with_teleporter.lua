@@ -176,6 +176,11 @@ local function teleportHUDClosed(okClicked)
     local worldDirection = (ac.trackProgressToWorldCoordinate(trackProgress + 1 / sim.trackLengthM) - ac.trackProgressToWorldCoordinate(trackProgress)):normalize()
 
     -- And emit the event:
+
+    -- the car is placed in the wrong direction of the track
+    worldDirection.x = worldDirection.x * -1 
+    worldDirection.z = worldDirection.z * -1
+    
     jumpEvent({
       targetSessionID = selectedCar.sessionID,
       targetPosition = worldCoordinates,
